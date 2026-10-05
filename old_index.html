@@ -1,217 +1,681 @@
 <!DOCTYPE HTML>
-<!-- 
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Proyecto Hipatia</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Hipatia - Feria de la Ciencia</title>
+    <!-- Google Fonts: 'Caveat' para el efecto de tiza/mano y 'Inter' para interfaz -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        chalk: ['Caveat', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        hipatia: {
+                            purple: '#9333ea',
+                            pink: '#ff4b82',
+                            teal: '#14b8a6',
+                            chalkBg: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animación de vibración de bajo FPS para simular trazo de tiza a mano */
+        @keyframes chalkWiggle {
+            0% { transform: translate(0px, 0px) rotate(0deg); }
+            25% { transform: translate(-0.8px, 0.8px) rotate(-0.5deg); }
+            50% { transform: translate(0.8px, -0.5px) rotate(0.5deg); }
+            75% { transform: translate(-0.5px, -0.8px) rotate(-0.2deg); }
+            100% { transform: translate(0px, 0px) rotate(0deg); }
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+        .chalk-text {
+            font-family: 'Caveat', cursive;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.6), 0 0 5px rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            animation: chalkWiggle 0.22s infinite steps(2); /* Bajo FPS para estilo stop-motion */
+        }
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Proyecto Hipatia</a>
-					</header>
+        /* Estilo de fondo patrón de pizarra cuadrícula fina */
+        .chalkboard-bg {
+            background-color: #1e293b;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 24px 24px, 20px 20px, 20px 20px;
+        }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Qué es Proyecto Hipatia</a></li>
-							<li><a href="generic.html">Apúntate</a></li>
-							<li><a href="elements.html">Contáctanos</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+        /* Estilo para las líneas diagonales cian del banner superior segun boceto */
+        .cyan-hatch {
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 12px,
+                #06b6d4 12px,
+                #06b6d4 15px
+            );
+            opacity: 0.85;
+        }
 
-				<!-- Main -->
-					<div id="main">
+        /* Animaciones para los iconos con destellos de luz */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px currentColor); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 12px currentColor); }
+        }
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<h2><a href="#">And this is a<br />
-									massive headline</a></h2>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
-								</ul>
-							</article>
+        .icon-glow {
+            animation: pulseGlow 1.5s infinite ease-in-out;
+        }
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<span class="date">April 24, 2017</span>
-										<h2><a href="#">Sed magna<br />
-										ipsum faucibus</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 22, 2017</span>
-										<h2><a href="#">Primis eget<br />
-										imperdiet lorem</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 18, 2017</span>
-										<h2><a href="#">Ante mattis<br />
-										interdum dolor</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 14, 2017</span>
-										<h2><a href="#">Tempus sed<br />
-										nulla imperdiet</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 11, 2017</span>
-										<h2><a href="#">Odio magna<br />
-										sed consectetur</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 7, 2017</span>
-										<h2><a href="#">Augue lorem<br />
-										primis vestibulum</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-							</section>
+        /* Transición suave para el encabezado pegajoso */
+        .header-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
+        /* Ocultar barra de scroll manteniendo desplazamiento */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
-					</div>
+    <!-- BARRA SUPERIOR FIJA / ENCABEZADO -->
+    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md header-transition">
+        
+        <!-- Zona Banner Superior (Se oculta al hacer scroll) -->
+        <div id="bannerZone" class="relative overflow-hidden bg-cyan-50 border-b-2 border-purple-500 transition-all duration-300 h-20 flex items-center justify-center">
+            <div class="absolute inset-0 cyan-hatch"></div>
+            <div class="relative z-10 px-4 py-1 bg-white/90 rounded-xl shadow-lg border-2 border-purple-500 backdrop-blur-sm">
+                <h1 id="headerTitle" class="text-3xl md:text-4xl font-bold font-chalk text-purple-600 tracking-wide transition-all duration-300">
+                    Proyecto Hipatia
+                </h1>
+            </div>
+        </div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+        <!-- BARRA DE NAVEGACIÓN Y MENÚ -->
+        <nav id="navBar" class="bg-white border-b border-slate-200 transition-all duration-300">
+            <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+                
+                <!-- Título que aparece a la izquierda en la barra reducida o al cambiar de sección -->
+                <div id="contractedTitle" class="flex items-center space-x-2 transition-opacity duration-300 opacity-0 pointer-events-none">
+                    <i class="fa-solid fa-flask text-purple-600 text-xl"></i>
+                    <span id="currentBarTitle" class="font-bold text-lg text-purple-700 font-chalk text-2xl">Proyecto Hipatia</span>
+                </div>
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+                <!-- MENÚ PESTAÑAS HORIZONTALES (Visible completo en Inicio) -->
+                <ul id="desktopMenu" class="hidden md:flex items-center space-x-1 lg:space-x-2 w-full justify-center text-sm md:text-base font-semibold transition-all duration-300">
+                    <li>
+                        <button onclick="switchTab('inicio')" data-tab="inicio" class="nav-tab px-4 py-2 rounded-lg transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 text-slate-600 border-2 border-transparent">
+                            Inicio
+                        </button>
+                    </li>
+                    <li class="text-slate-300">|</li>
+                    <li>
+                        <button onclick="switchTab('que-es')" data-tab="que-es" class="nav-tab px-4 py-2 rounded-lg transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 text-slate-600 border-2 border-transparent">
+                            Qué es Proyecto Hipatia
+                        </button>
+                    </li>
+                    <li class="text-slate-300">|</li>
+                    <li>
+                        <button onclick="switchTab('apuntate')" data-tab="apuntate" class="nav-tab px-4 py-2 rounded-lg transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 text-slate-600 border-2 border-transparent">
+                            Apúntate
+                        </button>
+                    </li>
+                    <li class="text-slate-300">|</li>
+                    <li>
+                        <button onclick="switchTab('colaborador')" data-tab="colaborador" class="nav-tab px-4 py-2 rounded-lg transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 text-slate-600 border-2 border-transparent">
+                            Hazte colaborador
+                        </button>
+                    </li>
+                    <li class="text-slate-300">|</li>
+                    <li>
+                        <button onclick="switchTab('documentos')" data-tab="documentos" class="nav-tab px-4 py-2 rounded-lg transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 text-slate-600 border-2 border-transparent">
+                            Documentos
+                        </button>
+                    </li>
+                </ul>
 
-			</div>
+                <!-- BOTÓN HAMBURGUESA (Tres rayas horizontales) para desplegable fuera de inicio o en pantallas pequeñas -->
+                <button id="hamburgerBtn" onclick="toggleDropdown()" class="hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none border border-slate-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+            <!-- DESPLEGABLE DEL MENÚ (Aparece al pulsar las 3 rayas) -->
+            <div id="dropdownMenu" class="hidden bg-white border-b border-slate-200 shadow-xl px-4 py-3 space-y-2 md:max-w-6xl md:mx-auto">
+                <button onclick="switchTab('inicio')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-700 hover:bg-purple-50 hover:text-purple-700 font-medium">
+                    <i class="fa-solid fa-house w-6 text-purple-500"></i> Inicio
+                </button>
+                <button onclick="switchTab('que-es')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-700 hover:bg-purple-50 hover:text-purple-700 font-medium">
+                    <i class="fa-solid fa-circle-info w-6 text-purple-500"></i> Qué es Proyecto Hipatia
+                </button>
+                <button onclick="switchTab('apuntate')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-700 hover:bg-purple-50 hover:text-purple-700 font-medium">
+                    <i class="fa-solid fa-pen-to-square w-6 text-purple-500"></i> Apúntate
+                </button>
+                <button onclick="switchTab('colaborador')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-700 hover:bg-purple-50 hover:text-purple-700 font-medium">
+                    <i class="fa-solid fa-handshake w-6 text-purple-500"></i> Hazte colaborador
+                </button>
+                <button onclick="switchTab('documentos')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-700 hover:bg-purple-50 hover:text-purple-700 font-medium">
+                    <i class="fa-solid fa-file-lines w-6 text-purple-500"></i> Documentos
+                </button>
+            </div>
+        </nav>
+    </header>
 
-	</body>
+    <!-- ESPACIADOR PARA offset del header fijo -->
+    <div id="headerSpacer" class="h-34 transition-all duration-300"></div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+        
+        <!-- SECCIÓN 1: INICIO Y PIZARRA ANIMADA -->
+        <section id="section-inicio" class="tab-content block">
+            <div class="chalkboard-bg text-white py-12 md:py-20 px-4 min-h-[550px] relative flex flex-col justify-center items-center overflow-hidden shadow-inner border-b-4 border-slate-700">
+                
+                <!-- Borde/Marco de madera o metal tipo pizarra de clase -->
+                <div class="absolute inset-2 border-2 border-dashed border-slate-600/50 rounded-2xl pointer-events-none"></div>
+
+                <!-- CONTENEDOR CENTRAL DE LA FRASE Y EL DIBUJO DE SVG -->
+                <div class="relative z-10 max-w-4xl w-full text-center px-4 my-8">
+                    
+                    <!-- SVG Overlay para el trazo rojo animado con flecha y luces -->
+                    <svg id="chalkSvg" class="absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible" viewBox="0 0 800 350" preserveAspectRatio="none">
+                        <defs>
+                            <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff4b82" />
+                            </marker>
+                        </defs>
+                        
+                        <!-- Trazo continuo estilo loop manual según dibujo -->
+                        <!-- Recorrido: Inicia en el centro inferior, da bucles alrededor del texto y termina en la flecha arriba -->
+                        <path id="animatedPath" 
+                              d="M 450 280 C 490 330, 520 230, 580 280 C 680 320, 780 230, 770 140 C 760 30, 680 20, 550 40 C 450 50, 300 20, 180 50 C 40 80, 20 220, 80 280 C 140 330, 350 330, 480 320 C 650 310, 820 220, 730 110 C 660 20, 480 10, 380 70 L 375 80" 
+                              fill="none" 
+                              stroke="#ff4b82" 
+                              stroke-width="4.5" 
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              marker-end="url(#arrowhead)"
+                              style="filter: drop-shadow(0px 0px 3px #ff4b82);"
+                        />
+                    </svg>
+
+                    <!-- ICONO VERDE: LIBRO CON RAYOS DE LUZ (Izquierda arriba) -->
+                    <div id="greenBookIcon" class="absolute top-2 left-2 md:-left-4 z-30 transition-all duration-500 opacity-0 scale-50 text-emerald-400">
+                        <div class="relative flex flex-col items-center">
+                            <!-- Destellos dibujados -->
+                            <div class="absolute -top-4 flex space-x-2 text-xs text-emerald-300">
+                                <i class="fa-solid fa-minus rotate-45"></i>
+                                <i class="fa-solid fa-minus rotate-90"></i>
+                                <i class="fa-solid fa-minus -rotate-45"></i>
+                            </div>
+                            <i class="fa-solid fa-book-open text-4xl md:text-5xl drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]"></i>
+                            <div class="text-xs font-chalk mt-1 text-emerald-200">Ciencia</div>
+                        </div>
+                    </div>
+
+                    <!-- ICONO AMARILLO: BOMBILLA CON RAYOS DE LUZ (Derecha abajo) -->
+                    <div id="yellowBulbIcon" class="absolute bottom-2 right-4 md:right-8 z-30 transition-all duration-500 opacity-0 scale-50 text-yellow-300">
+                        <div class="relative flex flex-col items-center">
+                            <!-- Destellos dibujados -->
+                            <div class="absolute -top-5 flex space-x-3 text-sm text-yellow-200">
+                                <i class="fa-solid fa-bolt -rotate-12"></i>
+                                <i class="fa-solid fa-asterisk"></i>
+                                <i class="fa-solid fa-bolt rotate-12"></i>
+                            </div>
+                            <i class="fa-solid fa-lightbulb text-4xl md:text-5xl drop-shadow-[0_0_12px_rgba(253,224,71,0.9)]"></i>
+                            <div class="text-xs font-chalk mt-1 text-yellow-100">Ideas</div>
+                        </div>
+                    </div>
+
+                    <!-- FRASE PRINCIPAL EN TIPOGRAFÍA TIZA / PIZARRA CON BAJO FPS -->
+                    <div class="py-12 md:py-16 px-6">
+                        <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-chalk tracking-wider text-slate-100 leading-tight select-none">
+                            <span class="chalk-text">BIENVENIDO/A AL</span><br>
+                            <span class="chalk-text text-yellow-100">FUTURO DE LA EDUCACIÓN</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción rápida bajo la pizarra -->
+                <div class="mt-4 z-30 flex flex-wrap gap-4 justify-center">
+                    <button onclick="switchTab('que-es')" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-full shadow-lg transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <span>Descubre el Proyecto</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button onclick="switchTab('apuntate')" class="px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-lg transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Inscribirse Ahora</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjetas destacadas en la página de inicio -->
+            <div class="max-w-6xl mx-auto px-4 py-16">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-slate-800">Feria Científica Hipatia 2026</h3>
+                    <p class="text-slate-600 mt-2 text-lg">Un espacio donde la curiosidad se transforma en innovación educativa.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Tarjeta 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl transition">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-slate-800">Experimentos en Vivo</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Muestras prácticas desarrolladas por estudiantes y mentores de todo el país.
+                        </p>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl transition">
+                        <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600 text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-slate-800">Trabajo Colaborativo</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Proyectos multidisciplinares que combinan tecnología, arte, ciencias y humanidades.
+                        </p>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl transition">
+                        <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-teal-600 text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 text-slate-800">Premios e Incentivos</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Reconocimiento a las ideas más creativas y con mayor impacto en la comunidad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: QUÉ ES PROYECTO HIPATIA -->
+        <section id="section-que-es" class="tab-content hidden max-w-5xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+                <div class="border-b pb-4 mb-6 flex items-center space-x-3">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-purple-600"></i>
+                    <h2 class="text-3xl font-bold text-slate-800">Qué es Proyecto Hipatia</h2>
+                </div>
+                <div class="space-y-4 text-slate-700 leading-relaxed">
+                    <p class="text-lg">
+                        El <strong>Proyecto Hipatia</strong> es un certamen y feria científica anual orientado a fomentar las vocaciones STEM (Ciencia, Tecnología, Ingeniería y Matemáticas) en estudiantes de todas las edades.
+                    </p>
+                    <p>
+                        Inspirado en Hipatia de Alejandría, una de las primeras matemáticas y astrónomas de la historia, este proyecto busca democratizar el acceso al conocimiento científico y dar visibilidad a ideas creativas que resuelvan problemas reales.
+                    </p>
+                    <div class="bg-purple-50 rounded-xl p-6 border-l-4 border-purple-600 my-6">
+                        <h4 class="font-bold text-purple-900 text-lg mb-2"><i class="fa-solid fa-bullseye mr-2"></i>Nuestros Objetivos</h4>
+                        <ul class="list-disc list-inside space-y-2 text-purple-800">
+                            <li>Promover el aprendizaje basado en retos reales.</li>
+                            <li>Incentivar la participación de jóvenes investigadoras.</li>
+                            <li>Crear redes entre centros educativos, universidades y la industria.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: APÚNTATE -->
+        <section id="section-apuntate" class="tab-content hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+                <div class="border-b pb-4 mb-6 flex items-center space-x-3">
+                    <i class="fa-solid fa-pen-to-square text-3xl text-pink-500"></i>
+                    <h2 class="text-3xl font-bold text-slate-800">Inscripción al Proyecto</h2>
+                </div>
+                <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre completo</label>
+                            <input type="text" required placeholder="Tu nombre" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Correo electrónico</label>
+                            <input type="email" required placeholder="ejemplo@escuela.edu" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Centro Educativo / Institución</label>
+                            <input type="text" required placeholder="Nombre de tu centro" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Categoría</label>
+                            <select class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                                <option>Primaria / Básica</option>
+                                <option>Secundaria / Bachillerato</option>
+                                <option>Universidad / Formación Profesional</option>
+                                <option>Categoría Libre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Resumen de tu Idea o Proyecto</label>
+                        <textarea rows="4" required placeholder="Cuéntanos brevemente qué experimento o investigación quieres presentar..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-lg shadow-md transition">
+                        Enviar Inscripción
+                    </button>
+                </form>
+                <div id="formAlert" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-lg text-center font-semibold">
+                    ¡Gracias por tu registro! Nos pondremos en contacto contigo pronto.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: HAZTE COLABORADOR -->
+        <section id="section-colaborador" class="tab-content hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+                <div class="border-b pb-4 mb-6 flex items-center space-x-3">
+                    <i class="fa-solid fa-handshake text-3xl text-teal-600"></i>
+                    <h2 class="text-3xl font-bold text-slate-800">Hazte Colaborador o Patrocinador</h2>
+                </div>
+                <p class="text-slate-600 mb-8">
+                    Buscamos mentores, empresas e instituciones interesadas en apoyar la innovación educativa y financiar becas o equipamiento para los jóvenes científicos.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="border-2 border-dashed border-purple-200 rounded-xl p-6 text-center hover:border-purple-500 transition">
+                        <i class="fa-solid fa-user-tie text-4xl text-purple-600 mb-3"></i>
+                        <h3 class="font-bold text-lg mb-2">Ser Mentor</h3>
+                        <p class="text-slate-600 text-sm mb-4">Guía a un equipo de estudiantes durante la preparación de sus experimentos.</p>
+                        <button onclick="alert('Gracias por tu interés en ser mentor. Escríbenos a mentores@hipatia.edu')" class="px-4 py-2 bg-purple-100 text-purple-700 font-bold rounded-lg hover:bg-purple-200 text-sm">Quiero ser Mentor</button>
+                    </div>
+                    <div class="border-2 border-dashed border-teal-200 rounded-xl p-6 text-center hover:border-teal-500 transition">
+                        <i class="fa-solid fa-building text-4xl text-teal-600 mb-3"></i>
+                        <h3 class="font-bold text-lg mb-2">Empresa / Patrocinio</h3>
+                        <p class="text-slate-600 text-sm mb-4">Aporta recursos, material de laboratorio o premios para la fase final.</p>
+                        <button onclick="alert('Gracias por apoyar la ciencia. Contacta en patrocinio@hipatia.edu')" class="px-4 py-2 bg-teal-100 text-teal-700 font-bold rounded-lg hover:bg-teal-200 text-sm">Patrocinar Feria</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: DOCUMENTOS -->
+        <section id="section-documentos" class="tab-content hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+                <div class="border-b pb-4 mb-6 flex items-center space-x-3">
+                    <i class="fa-solid fa-folder-open text-3xl text-amber-500"></i>
+                    <h2 class="text-3xl font-bold text-slate-800">Documentos y Bases de la Convocatoria</h2>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition border border-slate-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-file-pdf text-red-500 text-2xl"></i>
+                            <div>
+                                <div class="font-bold text-slate-800">Bases_Oficiales_Feria_Hipatia_2026.pdf</div>
+                                <div class="text-xs text-slate-500">2.4 MB • Requisitos y normas de seguridad</div>
+                            </div>
+                        </div>
+                        <a href="#" onclick="event.preventDefault(); alert('Descargando documento...')" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-sm font-semibold">Descargar</a>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition border border-slate-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-file-word text-blue-500 text-2xl"></i>
+                            <div>
+                                <div class="font-bold text-slate-800">Plantilla_Memoria_de_Proyecto.docx</div>
+                                <div class="text-xs text-slate-500">1.1 MB • Formato para la entrega final</div>
+                            </div>
+                        </div>
+                        <a href="#" onclick="event.preventDefault(); alert('Descargando plantilla...')" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-sm font-semibold">Descargar</a>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition border border-slate-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-file-lines text-emerald-500 text-2xl"></i>
+                            <div>
+                                <div class="font-bold text-slate-800">Guia_de_Evaluación_Jurado.pdf</div>
+                                <div class="text-xs text-slate-500">850 KB • Criterios de puntuación</div>
+                            </div>
+                        </div>
+                        <a href="#" onclick="event.preventDefault(); alert('Descargando guía...')" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-sm font-semibold">Descargar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-center text-sm mt-12 border-t border-slate-800">
+        <p>© 2026 Proyecto Hipatia - Feria de la Ciencia y la Educación.</p>
+    </footer>
+
+    <script>
+        // Variables de estado
+        let activeTab = 'inicio';
+        let isContractedByScroll = false;
+
+        // Mapeo de nombres limpios para las pestañas
+        const tabTitles = {
+            'inicio': 'Proyecto Hipatia',
+            'que-es': 'Qué es Proyecto Hipatia',
+            'apuntate': 'Apúntate',
+            'colaborador': 'Hazte colaborador',
+            'documentos': 'Documentos'
+        };
+
+        // Escuchar el evento de desplazamiento (Scroll)
+        window.addEventListener('scroll', handleScroll);
+
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            const banner = document.getElementById('bannerZone');
+            const mainHeader = document.getElementById('mainHeader');
+            const contractedTitle = document.getElementById('contractedTitle');
+            const desktopMenu = document.getElementById('desktopMenu');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+            // Determinar si debemos contraer la cabecera
+            if (scrollY > 40) {
+                isContractedByScroll = true;
+                banner.style.height = '0px';
+                banner.style.opacity = '0';
+                
+                // Mostrar título a la izquierda
+                contractedTitle.classList.remove('opacity-0', 'pointer-events-none');
+                contractedTitle.classList.add('opacity-100');
+
+                // Si estamos en inicio pero con scroll, mantener barra limpia
+                if (activeTab === 'inicio') {
+                    desktopMenu.classList.remove('w-full', 'justify-center');
+                    desktopMenu.classList.add('justify-end');
+                }
+            } else {
+                isContractedByScroll = false;
+                banner.style.height = '80px';
+                banner.style.opacity = '1';
+
+                // Si estamos en Inicio y arriba del todo, restablecer alineación completa
+                if (activeTab === 'inicio') {
+                    contractedTitle.classList.add('opacity-0', 'pointer-events-none');
+                    contractedTitle.classList.remove('opacity-100');
+                    desktopMenu.classList.add('w-full', 'justify-center');
+                    desktopMenu.classList.remove('justify-end');
+                }
+            }
+
+            // Aplicar la regla de pestañas distintas de 'Inicio'
+            updateNavigationLayout();
+        }
+
+        // Función para cambiar de pestaña/sección
+        function switchTab(tabId) {
+            activeTab = tabId;
+
+            // Ocultar todos los contenidos de pestaña
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+
+            // Mostrar la pestaña seleccionada
+            const selectedSection = document.getElementById(`section-${tabId}`);
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+                selectedSection.classList.add('block');
+            }
+
+            // Cerrar menú desplegable si estaba abierto
+            document.getElementById('dropdownMenu').classList.add('hidden');
+
+            // Actualizar resaltado de las pestañas activas
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabId) {
+                    // Resaltar pestaña activa con estilo llamativo
+                    btn.className = "nav-tab px-4 py-2 rounded-lg transition-all duration-200 bg-purple-600 text-white font-bold shadow-md border-2 border-purple-600";
+                } else {
+                    btn.className = "nav-tab px-4 py-2 rounded-lg transition-all duration-200 hover:bg-purple-100 hover:text-purple-700 text-slate-600 border-2 border-transparent";
+                }
+            });
+
+            // Actualizar título en la franja contraída
+            document.getElementById('currentBarTitle').textContent = tabTitles[tabId] || 'Proyecto Hipatia';
+
+            // Actualizar estructura del menú según la regla requerida
+            updateNavigationLayout();
+
+            // Desplazar suavemente hacia arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reiniciar animación del SVG si se vuelve a la pestaña de Inicio
+            if (tabId === 'inicio') {
+                restartSvgAnimation();
+            }
+        }
+
+        // Actualizar diseño de navegación (Barra fija o Menú desplegable)
+        function updateNavigationLayout() {
+            const desktopMenu = document.getElementById('desktopMenu');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const contractedTitle = document.getElementById('contractedTitle');
+
+            // Si estamos en cualquier pestaña diferente a 'Inicio' OR hemos hecho scroll
+            if (activeTab !== 'inicio') {
+                // Convertir menú en botón de 3 rayas a la derecha, y título a la izquierda
+                desktopMenu.classList.add('hidden');
+                desktopMenu.classList.remove('md:flex');
+                hamburgerBtn.classList.remove('hidden');
+                
+                contractedTitle.classList.remove('opacity-0', 'pointer-events-none');
+                contractedTitle.classList.add('opacity-100');
+            } else {
+                // En pestaña Inicio
+                if (!isContractedByScroll) {
+                    contractedTitle.classList.add('opacity-0', 'pointer-events-none');
+                    contractedTitle.classList.remove('opacity-100');
+                }
+                desktopMenu.classList.remove('hidden');
+                desktopMenu.classList.add('md:flex');
+                hamburgerBtn.classList.add('hidden');
+            }
+        }
+
+        // Abrir/cerrar desplegable hamburguesa
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Manejador del formulario de registro
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('formAlert');
+            alertBox.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 4000);
+        }
+
+        function setupSvgAnimation() {
+            const path = document.getElementById('animatedPath');
+            if (!path) return;
+
+            const pathLength = path.getTotalLength();
+            
+            // Configurar trazo inicial oculto usando strokeDasharray / offset
+            path.style.strokeDasharray = pathLength;
+            path.style.strokeDashoffset = pathLength;
+
+            const greenBook = document.getElementById('greenBookIcon');
+            const yellowBulb = document.getElementById('yellowBulbIcon');
+
+            // Resetear iconos
+            greenBook.style.opacity = '0';
+            greenBook.style.transform = 'scale(0.5)';
+            greenBook.classList.remove('icon-glow');
+
+            yellowBulb.style.opacity = '0';
+            yellowBulb.style.transform = 'scale(0.5)';
+            yellowBulb.classList.remove('icon-glow');
+
+            let startTime = null;
+            const duration = 3500; // 3.5 segundos para recorrido completo
+
+            function animateLine(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+
+                // Disminuir dashoffset para dibujar la línea en el sentido de la flecha
+                const currentOffset = pathLength * (1 - progress);
+                path.style.strokeDashoffset = currentOffset;
+
+                // Trigger para encender los iconos según el porcentaje de avance de la línea
+                // El libro verde está en la primera mitad del recorrido (~25%)
+                if (progress > 0.22 && greenBook.style.opacity === '0') {
+                    greenBook.style.opacity = '1';
+                    greenBook.style.transform = 'scale(1)';
+                    greenBook.classList.add('icon-glow');
+                }
+
+                // La bombilla amarilla está más adelante en el bucle (~65%)
+                if (progress > 0.65 && yellowBulb.style.opacity === '0') {
+                    yellowBulb.style.opacity = '1';
+                    yellowBulb.style.transform = 'scale(1)';
+                    yellowBulb.classList.add('icon-glow');
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateLine);
+                }
+            }
+
+            requestAnimationFrame(animateLine);
+        }
+
+        function restartSvgAnimation() {
+            setTimeout(setupSvgAnimation, 100);
+        }
+
+        // Inicializar al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            switchTab('inicio');
+            setupSvgAnimation();
+        });
+    </script>
+</body>
 </html>
